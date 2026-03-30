@@ -104,6 +104,10 @@ body {
 }
 
 /* CARD */
+.welcome-cards a, h3, p {
+    text-decoration: none;
+}
+
 .welcome-card {
     background: #ffffff;
     padding: 35px 25px;
