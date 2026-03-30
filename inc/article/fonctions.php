@@ -192,6 +192,7 @@ function show(string $slug)
 {
 	return getArticleBySlug($slug);
 }
+/*
  * Sauvegarde une image pour un article
  * @param array $data Associative array: url, alt, id_article
  * @return int id inséré
