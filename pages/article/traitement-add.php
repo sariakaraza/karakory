@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../inc/article/fonctions.php';
 
 // Vérification que le formulaire a été soumis en POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: add.php');
+    header('Location: form.php');
     exit;
 }
 
@@ -16,7 +16,7 @@ $id_categorie = $_POST['id_categorie'] ?? '';
 // Validation basique
 if (empty($titre) || empty($slug) || empty($contenu) || empty($id_categorie)) {
     // Redirection vers le formulaire en cas de données manquantes
-    header('Location: add.php?error=missing_fields');
+    header('Location: form.php?error=missing_fields');
     exit;
 }
 
@@ -45,12 +45,12 @@ try {
         exit;
     } else {
         // En cas d'échec
-        header('Location: add.php?error=insert_failed');
+        header('Location: form.php?error=insert_failed');
         exit;
     }
 } catch (Exception $e) {
     // En cas d'erreur
     error_log('Erreur lors de l\'insertion de l\'article: ' . $e->getMessage());
-    header('Location: add.php?error=database_error');
+    header('Location: form.php?error=database_error');
     exit;
 }
