@@ -119,3 +119,18 @@ function deleteCategory(int $id): bool
 	$stmt = $pdo->prepare($sql);
 	return $stmt->execute([':id_categorie' => $id]);
 }
+
+/**
+ * Récupère une catégorie par son ID.
+ * @param int $id
+ * @return array|null
+ */
+function getCategoryById(int $id): ?array
+{
+	$pdo = getPDO();
+	$sql = 'SELECT * FROM categories WHERE id_categorie = :id_categorie';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([':id_categorie' => $id]);
+	$category = $stmt->fetch();
+	return $category ?: null;
+}
