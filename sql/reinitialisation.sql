@@ -61,6 +61,7 @@ CREATE TABLE articles(
 CREATE TABLE images_articles(
    id_image SERIAL,
    url TEXT NOT NULL,
+   alt TEXT,
    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    id_article INTEGER NOT NULL,
    PRIMARY KEY(id_image),

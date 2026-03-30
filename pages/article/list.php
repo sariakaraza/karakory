@@ -57,7 +57,34 @@ $articles = getArticles();
                     </div>
                 <?php endif; ?>
 
-                <!-- Articles List -->
+                <?php if (isset($_GET['image_errors'])): ?>
+                    <div class="alert alert-warning">
+                        ⚠️ Article créé mais certaines images n'ont pas pu être uploadées : <?php echo htmlspecialchars($_GET['image_errors']); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (isset($_GET['error'])): ?>
+                    <div class="alert alert-error">
+                        <?php
+                        switch ($_GET['error']) {
+                            case 'missing_fields':
+                                echo '❌ Tous les champs sont requis';
+                                break;
+                            case 'insert_failed':
+                                echo '❌ Erreur lors de la création de l\'article';
+                                break;
+                            case 'update_failed':
+                                echo '❌ Erreur lors de la mise à jour de l\'article';
+                                break;
+                            case 'database_error':
+                                echo '❌ Erreur de base de données';
+                                break;
+                            default:
+                                echo '❌ Une erreur est survenue';
+                        }
+                        ?>
+                    </div>
+                <?php endif; ?>
                 <div class="articles-container">
                     <?php if (count($articles) > 0): ?>
                         <?php foreach ($articles as $article): ?>

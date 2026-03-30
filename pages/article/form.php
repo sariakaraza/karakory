@@ -61,7 +61,7 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
 
                 <!-- Formulaire -->
                 <div class="form-container">
-                    <form method="POST" action="traitement-article.php" class="article-form">
+                    <form method="POST" action="traitement-article.php" enctype="multipart/form-data" class="article-form">
 
                         <!-- Titre -->
                         <div class="form-group">
@@ -116,6 +116,22 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
                             ></textarea>
                         </div>
 
+                        <!-- Images -->
+                        <div class="form-group">
+                            <label>Images de l'article</label>
+                            <small class="form-hint">Ajoutez des images pour illustrer votre article (optionnel)</small>
+                            <div id="images-container">
+                                <!-- Les champs d'images seront ajoutés ici dynamiquement -->
+                            </div>
+                            <button type="button" id="add-image-btn" class="btn-add-image">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                Ajouter une image
+                            </button>
+                        </div>
+
                         <!-- Boutons -->
                         <div class="form-actions">
                             <a href="list.php" class="btn-cancel">Annuler</a>
@@ -147,6 +163,40 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
 
             document.getElementById('slug').value = slug;
         });
+
+        // Gestion des images
+        let imageIndex = 0;
+
+        document.getElementById('add-image-btn').addEventListener('click', function() {
+            addImageField();
+        });
+
+        function addImageField() {
+            const container = document.getElementById('images-container');
+            const imageDiv = document.createElement('div');
+            imageDiv.className = 'image-field';
+            imageDiv.innerHTML = `
+                <div class="image-input-group">
+                    <input type="file" name="images[]" accept="image/*" class="form-file" required>
+                    <input type="text" name="alt_texts[]" placeholder="Texte alternatif (pour le SEO)" class="form-input-alt" required>
+                    <button type="button" class="btn-remove-image" onclick="removeImageField(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            container.appendChild(imageDiv);
+            imageIndex++;
+        }
+
+        function removeImageField(button) {
+            button.closest('.image-field').remove();
+        }
+
+        // Ajouter un champ d'image par défaut
+        addImageField();
     </script>
 </body>
 </html>
