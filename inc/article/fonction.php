@@ -1,5 +1,5 @@
 <?php
-include ("../connexion.php");
+require_once __DIR__ . '/../connexion.php';
 
 /**
  * Récupère tous les articles triés par date_creation décroissante.
