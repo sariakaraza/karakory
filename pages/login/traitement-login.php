@@ -21,7 +21,7 @@ $user = checkLogin($username, $password);
 
 if ($user === false) {
     // Utilisateur non trouvé ou mot de passe incorrect
-    header('Location: form.php?error=' . urlencode("votre compte n'existe pas"));
+    header('Location: form.php?error=' . urlencode("Vos identifiants sont incorrects"));
     exit;
 }
 
@@ -37,6 +37,6 @@ if (isAdmin($id_user)) {
     exit;
 } else {
     // Utilisateur authentifié mais pas admin
-    header('Location: form.php?error=' . urlencode('vous n\'etes pas admin'));
+    header('Location: form.php?error=' . urlencode('Vous n\'êtes pas administrateur'));
     exit;
 }

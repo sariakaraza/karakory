@@ -20,11 +20,6 @@ if (isset($_GET['error']) && is_string($_GET['error'])) {
         </div>
         <div class="login-right">
             <div class="login-form-wrapper">
-                    <?php if ($error !== ''): ?>
-                        <div class="error-message" style="color:#b00020;margin-bottom:12px;">
-                            <?php echo $error; ?>
-                        </div>
-                    <?php endif; ?>
                 <h1>Connexion</h1>
                 <form method="POST" action="traitement-login.php" class="login-form">
                     <div class="form-group">
@@ -37,6 +32,11 @@ if (isset($_GET['error']) && is_string($_GET['error'])) {
                     </div>
                     <button type="submit" class="btn-login">Se connecter</button>
                 </form>
+                <?php if ($error !== ''): ?>
+                    <div class="error-message" style="color:#b00020;margin-bottom:12px;">
+                        <?php echo $error; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
