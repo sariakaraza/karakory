@@ -604,6 +604,12 @@ body {
     color: #721c24;
 }
 
+.alert-warning {
+    background-color: #fff3cd;
+    border: 2px solid #ffeaa7;
+    color: #856404;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .sidebar {
