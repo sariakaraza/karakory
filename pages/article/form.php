@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
 
     <div class="app-layout">
         <?php include __DIR__ . '/../../inc/components/sidebar.php'; ?>
-
+        
         <main class="main-content">
             <div class="articles-bo-container">
                 <!-- Header -->
