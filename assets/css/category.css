@@ -1,0 +1,199 @@
+/* Styles spécifiques à la liste des catégories */
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.category-card {
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-main {
+    margin-bottom: 0.75rem;
+}
+
+.category-name {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.category-slug {
+    display: inline-block;
+    margin-top: 0.35rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.category-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.category-actions a {
+    margin-left: 0.5rem;
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+}
+
+.btn-edit {
+    background: #f3f4f6;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+}
+
+.btn-delete {
+    background: #fee2e2;
+    color: #7f1d1d;
+    border: 1px solid #fecaca;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Styles pour les formulaires */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h1 {
+    color: #001f3f;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+.form-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.form-card:hover {
+    border-color: #001f3f;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    color: #001f3f;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #001f3f;
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(0, 31, 63, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #adb5bd;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 8px;
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #003366 0%, #001f3f 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 31, 63, 0.3);
+}
+
+.btn-secondary {
+    background: #f8f9fa;
+    color: #001f3f;
+    border: 2px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
