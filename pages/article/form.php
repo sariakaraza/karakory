@@ -58,7 +58,7 @@
 
                 <!-- Formulaire -->
                 <div class="form-container">
-                    <form method="POST" action="traitement-add.php" class="article-form">
+                    <form method="POST" action="traitement-article.php" class="article-form">
 
                         <!-- Titre -->
                         <div class="form-group">

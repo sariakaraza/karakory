@@ -17,6 +17,23 @@ function getArticles(): array
 }
 
 /**
+ * Récupère un article par son ID avec le nom de la catégorie
+ * @param int $id
+ * @return array|false
+ */
+function getArticleById(int $id)
+{
+	$pdo = getPDO();
+	$sql = 'SELECT a.*, c.nom as categorie_nom
+	        FROM articles a
+	        LEFT JOIN categories c ON a.id_categorie = c.id_categorie
+	        WHERE a.id_article = :id_article';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([':id_article' => $id]);
+	return $stmt->fetch();
+}
+
+/**
  * Insère un nouvel article.
  * @param array $data Associative array: titre, slug, contenu, date_publication (nullable), id_user, id_categorie
  * @return int id inséré
@@ -44,13 +61,13 @@ function saveArticle(array $data): int
 /**
  * Met à jour un article existant.
  * @param int $id
- * @param array $data Associative array: titre, slug, contenu, date_publication, id_user, id_categorie
+ * @param array $data Associative array: titre, slug, contenu, id_user, id_categorie
  * @return bool
  */
 function updateArticle(int $id, array $data): bool
 {
 	$pdo = getPDO();
-	$sql = 'UPDATE articles SET titre = :titre, slug = :slug, contenu = :contenu, date_publication = :date_publication, id_user = :id_user, id_categorie = :id_categorie WHERE id_article = :id_article';
+	$sql = 'UPDATE articles SET titre = :titre, slug = :slug, contenu = :contenu, id_user = :id_user, id_categorie = :id_categorie, date_modification = CURRENT_TIMESTAMP WHERE id_article = :id_article';
 	$stmt = $pdo->prepare($sql);
 
 	$params = [
@@ -128,4 +145,14 @@ function getRecentArticles(int $limit = 5): array
 	$stmt->execute();
 
 	return $stmt->fetchAll();
+}
+
+/**
+ * Récupère un article (alias de getArticleById pour compatibilité)
+ * @param int $id
+ * @return array|false
+ */
+function getArticle(int $id)
+{
+	return getArticleById($id);
 }
