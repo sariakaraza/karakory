@@ -2,13 +2,16 @@
 require_once __DIR__ . '/../connexion.php';
 
 /**
- * Récupère tous les articles triés par date_creation décroissante.
+ * Récupère tous les articles triés par date_publication décroissante avec le nom de la catégorie.
  * @return array
  */
 function getArticles(): array
 {
 	$pdo = getPDO();
-	$sql = 'SELECT * FROM articles ORDER BY date_creation DESC';
+	$sql = 'SELECT a.*, c.nom as categorie_nom
+	        FROM articles a
+	        LEFT JOIN categories c ON a.id_categorie = c.id_categorie
+	        ORDER BY a.date_publication DESC';
 	$stmt = $pdo->query($sql);
 	return $stmt->fetchAll();
 }
