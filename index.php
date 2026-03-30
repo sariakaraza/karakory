@@ -1,3 +1,3 @@
 <?php
-    header("location: pages/login/form.php");
+    header("location: pages/fo/home.php");
 ?>
