@@ -156,3 +156,25 @@ function getArticle(int $id)
 {
 	return getArticleById($id);
 }
+
+/**
+ * Sauvegarde une image pour un article
+ * @param array $data Associative array: url, alt, id_article
+ * @return int id inséré
+ */
+function saveArticleImage(array $data): int
+{
+	$pdo = getPDO();
+	$sql = 'INSERT INTO images_articles (url, alt, id_article) VALUES (:url, :alt, :id_article) RETURNING id_image';
+	$stmt = $pdo->prepare($sql);
+
+	$params = [
+		':url' => $data['url'] ?? null,
+		':alt' => $data['alt'] ?? null,
+		':id_article' => $data['id_article'] ?? null,
+	];
+
+	$stmt->execute($params);
+	$id = $stmt->fetchColumn();
+	return (int) $id;
+}

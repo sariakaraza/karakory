@@ -45,7 +45,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data['date_publication'] = date('Y-m-d H:i:s');
             $articleId = saveArticle($data);
             if ($articleId > 0) {
-                header('Location: list.php?success=article_created');
+                // Traitement des images uploadées
+                $imageErrors = [];
+                if (isset($_FILES['images']) && !empty($_FILES['images']['name'][0])) {
+                    $uploadDir = __DIR__ . '/../../assets/images/articles/';
+                    
+                    // Créer le dossier s'il n'existe pas
+                    if (!is_dir($uploadDir)) {
+                        if (!mkdir($uploadDir, 0755, true)) {
+                            $imageErrors[] = 'Impossible de créer le dossier d\'upload';
+                        }
+                    }
+
+                    if (empty($imageErrors)) {
+                        $images = $_FILES['images'];
+                        $altTexts = $_POST['alt_texts'] ?? [];
+                        
+                        for ($i = 0; $i < count($images['name']); $i++) {
+                            if ($images['error'][$i] === UPLOAD_ERR_OK) {
+                                $fileName = $images['name'][$i];
+                                $fileTmp = $images['tmp_name'][$i];
+                                $fileSize = $images['size'][$i];
+                                
+                                // Vérifier le type de fichier
+                                $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                                $fileType = mime_content_type($fileTmp);
+                                
+                                if (!in_array($fileType, $allowedTypes)) {
+                                    $imageErrors[] = "Type de fichier non autorisé pour {$fileName}";
+                                    continue;
+                                }
+                                
+                                // Vérifier la taille (max 5MB)
+                                if ($fileSize > 5 * 1024 * 1024) {
+                                    $imageErrors[] = "Fichier trop volumineux pour {$fileName}";
+                                    continue;
+                                }
+                                
+                                // Générer un nom unique pour éviter les conflits
+                                $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+                                $uniqueName = uniqid('article_' . $articleId . '_') . '.' . $extension;
+                                $filePath = $uploadDir . $uniqueName;
+                                
+                                if (move_uploaded_file($fileTmp, $filePath)) {
+                                    // Sauvegarder en base de données
+                                    $imageData = [
+                                        'url' => 'assets/images/articles/' . $uniqueName,
+                                        'alt' => $altTexts[$i] ?? '',
+                                        'id_article' => $articleId
+                                    ];
+                                    saveArticleImage($imageData);
+                                } else {
+                                    $imageErrors[] = "Erreur lors de l'upload de {$fileName}";
+                                }
+                            } elseif ($images['error'][$i] !== UPLOAD_ERR_NO_FILE) {
+                                $imageErrors[] = "Erreur d'upload pour {$images['name'][$i]}";
+                            }
+                        }
+                    }
+                }
+                
+                // Redirection avec message de succès, même s'il y a des erreurs d'images
+                $redirectUrl = 'list.php?success=article_created';
+                if (!empty($imageErrors)) {
+                    $redirectUrl .= '&image_errors=' . urlencode(implode('; ', $imageErrors));
+                }
+                header('Location: ' . $redirectUrl);
                 exit;
             } else {
                 header('Location: form.php?error=insert_failed');
