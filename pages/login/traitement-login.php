@@ -32,12 +32,7 @@ if (isAdmin($id_user)) {
     // Stocker les informations utiles en session
     $_SESSION['user'] = $user;
 
-<<<<<<< HEAD
-    // TODO: modifier la cible de redirection si nécessaire
-    header('Location: ../../admin.php');
-=======
     header('Location: ../dashboard/first.php');
->>>>>>> dev
     exit;
 } else {
     // Utilisateur authentifié mais pas admin
