@@ -1,30 +1,47 @@
 <?php
-// Détection du chemin actuel pour les liens du sidebar
+// Détection du chemin actuel
 $currentPath = $_SERVER['PHP_SELF'];
-$isInDashboard = strpos($currentPath, '/dashboard/') !== false;
-$isInArticle = strpos($currentPath, '/article/') !== false;
 
-// Construction des liens selon la page actuelle
+$isInDashboard = strpos($currentPath, '/dashboard/') !== false;
+$isInArticle   = strpos($currentPath, '/article/') !== false;
+$isInCategory  = strpos($currentPath, '/category/') !== false;
+
+// Gestion des liens selon la position
 if ($isInDashboard) {
+    $homeLink      = 'first.php';
     $dashboardLink = 'list.php';
-    $articleLink = '../article/list.php';
-    $homeLink = 'first.php';
+    $articleLink   = '../article/list.php';
+    $categoryLink  = '../category/list.php';
+
 } elseif ($isInArticle) {
+    $homeLink      = '../dashboard/first.php';
     $dashboardLink = '../dashboard/list.php';
-    $articleLink = 'list.php';
-    $homeLink = '../dashboard/first.php';
+    $articleLink   = 'list.php';
+    $categoryLink  = '../category/list.php';
+
+} elseif ($isInCategory) {
+    $homeLink      = '../dashboard/first.php';
+    $dashboardLink = '../dashboard/list.php';
+    $articleLink   = '../article/list.php';
+    $categoryLink  = 'list.php';
+
 } else {
+    // fallback
+    $homeLink      = 'dashboard/first.php';
     $dashboardLink = 'dashboard/list.php';
-    $articleLink = 'article/list.php';
-    $homeLink = 'first.php';
+    $articleLink   = 'article/list.php';
+    $categoryLink  = 'category/list.php';
 }
 ?>
+
 <aside class="sidebar">
     <div class="sidebar-header">
         <h2>Karakory</h2>
     </div>
 
     <nav class="sidebar-nav">
+
+        <!-- Accueil -->
         <a href="<?php echo $homeLink; ?>" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -33,6 +50,7 @@ if ($isInDashboard) {
             <span>Accueil</span>
         </a>
 
+        <!-- Dashboard -->
         <a href="<?php echo $dashboardLink; ?>" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -42,6 +60,7 @@ if ($isInDashboard) {
             <span>Dashboard</span>
         </a>
 
+        <!-- Articles -->
         <a href="<?php echo $articleLink; ?>" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -51,6 +70,17 @@ if ($isInDashboard) {
             </svg>
             <span>Articles</span>
         </a>
+
+        <!-- Catégories -->
+        <a href="<?php echo $categoryLink; ?>" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Catégories</span>
+        </a>
+
     </nav>
 </aside>
-
