@@ -156,3 +156,39 @@ function getArticle(int $id)
 {
 	return getArticleById($id);
 }
+
+/**
+ * Récupère tous les articles pour le frontend (même que getArticles)
+ * @return array
+ */
+function getAllArticles(): array
+{
+	return getArticles();
+}
+
+/**
+ * Récupère un article par son slug avec le nom de la catégorie
+ * @param string $slug
+ * @return array|false
+ */
+function getArticleBySlug(string $slug)
+{
+	$pdo = getPDO();
+	$sql = 'SELECT a.*, c.nom as categorie_nom
+	        FROM articles a
+	        LEFT JOIN categories c ON a.id_categorie = c.id_categorie
+	        WHERE a.slug = :slug';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([':slug' => $slug]);
+	return $stmt->fetch();
+}
+
+/**
+ * Affiche un article avec ses détails complets
+ * @param string $slug
+ * @return array|false
+ */
+function show(string $slug)
+{
+	return getArticleBySlug($slug);
+}

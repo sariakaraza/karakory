@@ -78,7 +78,7 @@ if (count($articles) > 0) {
                             ?>
                         </span>
                     </div>
-                    <a href="#" class="featured-link">Lire l'article</a>
+                    <a href="article.php?slug=<?php echo urlencode($mainArticle['slug']); ?>" class="featured-link">Lire l'article</a>
                 </div>
             </section>
 
@@ -87,34 +87,35 @@ if (count($articles) > 0) {
                 <h2 class="articles-title">Derniers articles</h2>
                 <div class="articles-grid">
                     <?php foreach ($otherArticles as $article): ?>
-                        <div class="article-card">
-                            <div class="article-card-image-wrapper">
-                                <img 
-                                    src="https://via.placeholder.com/300x200?text=<?php echo urlencode($article['titre']); ?>" 
-                                    alt="<?php echo htmlspecialchars($article['titre']); ?>"
-                                    class="article-card-image"
-                                >
+                        <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>" style="text-decoration: none; color: inherit;">
+                            <div class="article-card">
+                                <div class="article-card-image-wrapper">
+                                    <img 
+                                        src="https://via.placeholder.com/300x200?text=<?php echo urlencode($article['titre']); ?>" 
+                                        alt="<?php echo htmlspecialchars($article['titre']); ?>"
+                                        class="article-card-image"
+                                    >
+                                </div>
+                                <div class="article-card-body">
+                                    <span class="article-card-category">
+                                        <?php echo htmlspecialchars($article['categorie_nom'] ?? 'Général'); ?>
+                                    </span>
+                                    <h3 class="article-card-title">
+                                        <?php echo htmlspecialchars($article['titre']); ?>
+                                    </h3>
+                                    <p class="article-card-excerpt">
+                                        <?php echo htmlspecialchars(substr($article['contenu'], 0, 150)); ?>
+                                    </p>
+                                    <p class="article-card-date">
+                                        <?php 
+                                        if ($article['date_publication']) {
+                                            echo date('d/m/Y', strtotime($article['date_publication']));
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="article-card-body">
-                                <span class="article-card-category">
-                                    <?php echo htmlspecialchars($article['categorie_nom'] ?? 'Général'); ?>
-                                </span>
-                                <h3 class="article-card-title">
-                                    <?php echo htmlspecialchars($article['titre']); ?>
-                                </h3>
-                                <p class="article-card-excerpt">
-                                    <?php echo htmlspecialchars(substr($article['contenu'], 0, 150)); ?>
-                                </p>
-                                <p class="article-card-date">
-                                    <?php 
-                                    if ($article['date_publication']) {
-                                        echo date('d/m/Y', strtotime($article['date_publication']));
-                                    }
-                                    ?>
-                                </p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                        </a>                        </a>                    <?php endforeach; ?>
                 </div>
             <?php endif; ?>
         <?php else: ?>
