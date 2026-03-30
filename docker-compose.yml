@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: karakory_app
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8080:80"
+    environment:
+      # Par défaut, on se connecte à la base hôte (voir notes ci-dessous).
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_NAME=karakory
+    networks:
+      - app-network
+
+  # Si vous voulez démarrer Postgres dans Docker, décommentez le service ci-dessous.
+  # Vous n'avez pas besoin de ce service si vous utilisez Postgres 15 déjà installé sur la machine hôte.
+  db:
+    image: postgres:15
+    container_name: karakory_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: karakory
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5438:5432"
+    networks:
+      - app-network
+
+volumes:
+  db-data:
+
+networks:
+  app-network:
+    driver: bridge
