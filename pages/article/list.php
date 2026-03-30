@@ -36,6 +36,27 @@ $articles = getArticles();
                     </div>
                 </header>
 
+                <!-- Messages de succès/erreur -->
+                <?php if (isset($_GET['success'])): ?>
+                    <div class="alert alert-success">
+                        <?php
+                        switch ($_GET['success']) {
+                            case 'article_created':
+                                echo '✓ Article créé avec succès';
+                                break;
+                            case 'article_updated':
+                                echo '✓ Article modifié avec succès';
+                                break;
+                            case 'article_deleted':
+                                echo '✓ Article supprimé avec succès';
+                                break;
+                            default:
+                                echo '✓ Opération réussie';
+                        }
+                        ?>
+                    </div>
+                <?php endif; ?>
+
                 <!-- Articles List -->
                 <div class="articles-container">
                     <?php if (count($articles) > 0): ?>
@@ -89,5 +110,25 @@ $articles = getArticles();
             </div>
         </main>
     </div>
+
+    <style>
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+    </style>
 </body>
 </html>
