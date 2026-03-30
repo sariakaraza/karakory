@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once __DIR__ . '/../../inc/article/fonctions.php';
+require_once __DIR__ . '/../../inc/category/fonctions.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,8 +14,6 @@
 </head>
 <body>
     <?php
-    require_once __DIR__ . '/../../inc/article/fonctions.php';
-    require_once __DIR__ . '/../../inc/category/fonctions.php';
 
     // Récupération de l'ID de l'article
     $id_article = $_GET['id'] ?? null;

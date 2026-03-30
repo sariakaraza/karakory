@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once __DIR__ . '/../../inc/article/fonctions.php';
+
+// Charger les articles
+$articles = getArticles();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,10 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karakory - Articles</title>
     <link rel="stylesheet" href="../../assets/css/dashboard.css">
-    <link rel="stylesheet" href="../../assets/css/article-bo.css">
 </head>
 <body>
-    <?php require_once __DIR__ . '/traitement-article.php'; ?>
     <div class="app-layout">
         <?php include __DIR__ . '/../../inc/components/sidebar.php'; ?>
 

@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once __DIR__ . '/../../inc/category/fonctions.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,7 +13,6 @@
 </head>
 <body>
     <?php
-    require_once __DIR__ . '/../../inc/category/fonctions.php';
 
     // Récupération des catégories pour le select
     $categories = getCategories();
