@@ -26,19 +26,20 @@
                         <h3>Gérez vos articles</h3>
                         <p>Créez, modifiez et publiez vos articles en toute simplicité</p>
                     </div>
-
-                    <div class="welcome-card">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="14" width="7" height="7"></rect>
-                                <rect x="3" y="14" width="7" height="7"></rect>
-                            </svg>
+                    <a href="../category/form.php">
+                        <div class="welcome-card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                            </div>
+                            <h3>Organisez par catégories</h3>
+                            <p>Structurez votre contenu avec des catégories personnalisées</p>
                         </div>
-                        <h3>Organisez par catégories</h3>
-                        <p>Structurez votre contenu avec des catégories personnalisées</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </main>

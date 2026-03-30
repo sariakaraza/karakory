@@ -102,6 +102,10 @@ body {
     gap: 30px;
 }
 
+.welcome-cards a, h3, p {
+    text-decoration: none;
+}
+
 .welcome-card {
     background: white;
     padding: 40px 30px;
