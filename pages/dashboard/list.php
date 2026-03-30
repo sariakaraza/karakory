@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../assets/css/dashboard.css">
 </head>
 <body>
+    <?php require_once __DIR__ . '/traitement-dashboard.php'; ?>
     <div class="app-layout">
         <?php include __DIR__ . '/../../inc/components/sidebar.php'; ?>
 
@@ -19,11 +20,11 @@
                         <p>Gérez vos articles et catégories</p>
                     </div>
                     <div class="header-filters">
-                        <select name="period" id="period" class="filter-select">
-                            <option value="all">Tout voir</option>
-                            <option value="today">Aujourd'hui</option>
-                            <option value="week">Cette semaine</option>
-                            <option value="month">Ce mois</option>
+                        <select name="period" id="period" class="filter-select" onchange="window.location.href='list.php?period=' + this.value">
+                            <option value="all" <?php echo $period === 'all' ? 'selected' : ''; ?>>Tout voir</option>
+                            <option value="today" <?php echo $period === 'today' ? 'selected' : ''; ?>>Aujourd'hui</option>
+                            <option value="week" <?php echo $period === 'week' ? 'selected' : ''; ?>>Cette semaine</option>
+                            <option value="month" <?php echo $period === 'month' ? 'selected' : ''; ?>>Ce mois</option>
                         </select>
                     </div>
                 </header>
@@ -43,7 +44,7 @@
                 </div>
                 <div class="stat-info">
                     <h3>Articles</h3>
-                    <p class="stat-number">24</p>
+                    <p class="stat-number"><?php echo $articlesCount; ?></p>
                     <p class="stat-subtitle">articles publiés</p>
                 </div>
                 <a href="#" class="btn-add">
@@ -67,7 +68,7 @@
                 </div>
                 <div class="stat-info">
                     <h3>Catégories</h3>
-                    <p class="stat-number">8</p>
+                    <p class="stat-number"><?php echo $categoriesCount; ?></p>
                     <p class="stat-subtitle">catégories actives</p>
                 </div>
                 <a href="#" class="btn-add">
@@ -88,27 +89,25 @@
                 <div class="activity-card">
                     <div class="activity-header">
                         <h3>Derniers articles</h3>
-                        <span class="count-badge">5 nouveaux</span>
+                        <span class="count-badge"><?php echo $newArticlesToday; ?> nouveaux</span>
                     </div>
                     <ul class="activity-list">
-                        <li class="activity-item">
-                            <div class="item-info">
-                                <p class="item-title">Introduction à PHP</p>
-                                <span class="item-date">Il y a 2 heures</span>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="item-info">
-                                <p class="item-title">Les bases de MySQL</p>
-                                <span class="item-date">Il y a 5 heures</span>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="item-info">
-                                <p class="item-title">Guide CSS moderne</p>
-                                <span class="item-date">Hier</span>
-                            </div>
-                        </li>
+                        <?php if (count($recentArticles) > 0): ?>
+                            <?php foreach ($recentArticles as $article): ?>
+                                <li class="activity-item">
+                                    <div class="item-info">
+                                        <p class="item-title"><?php echo htmlspecialchars($article['titre']); ?></p>
+                                        <span class="item-date"><?php echo timeAgo($article['date_creation']); ?></span>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <li class="activity-item">
+                                <div class="item-info">
+                                    <p class="item-title">Aucun article aujourd'hui</p>
+                                </div>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
 
@@ -116,21 +115,25 @@
                 <div class="activity-card">
                     <div class="activity-header">
                         <h3>Dernières catégories</h3>
-                        <span class="count-badge">2 nouvelles</span>
+                        <span class="count-badge"><?php echo $newCategoriesToday; ?> nouvelles</span>
                     </div>
                     <ul class="activity-list">
-                        <li class="activity-item">
-                            <div class="item-info">
-                                <p class="item-title">Développement Web</p>
-                                <span class="item-date">Il y a 1 jour</span>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="item-info">
-                                <p class="item-title">Base de données</p>
-                                <span class="item-date">Il y a 3 jours</span>
-                            </div>
-                        </li>
+                        <?php if (count($recentCategories) > 0): ?>
+                            <?php foreach ($recentCategories as $category): ?>
+                                <li class="activity-item">
+                                    <div class="item-info">
+                                        <p class="item-title"><?php echo htmlspecialchars($category['nom']); ?></p>
+                                        <span class="item-date"><?php echo timeAgo($category['date_creation']); ?></span>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <li class="activity-item">
+                                <div class="item-info">
+                                    <p class="item-title">Aucune catégorie aujourd'hui</p>
+                                </div>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

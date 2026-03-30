@@ -75,3 +75,54 @@ function deleteArticle(int $id): bool
 	return $stmt->execute([':id_article' => $id]);
 }
 
+/**
+ * Compte le nombre d'articles selon la période
+ * @param string $period 'today', 'week', 'month', 'all'
+ * @return int
+ */
+function countArticlesByPeriod(string $period = 'all'): int
+{
+	$pdo = getPDO();
+
+	$sql = 'SELECT COUNT(*) FROM articles WHERE 1=1';
+
+	switch ($period) {
+		case 'today':
+			$sql .= ' AND DATE(date_creation) = CURRENT_DATE';
+			break;
+		case 'week':
+			$sql .= ' AND date_creation >= CURRENT_DATE - INTERVAL \'7 days\'';
+			break;
+		case 'month':
+			$sql .= ' AND date_creation >= CURRENT_DATE - INTERVAL \'1 month\'';
+			break;
+		case 'all':
+		default:
+			// Pas de filtre supplémentaire
+			break;
+	}
+
+	$stmt = $pdo->query($sql);
+	return (int) $stmt->fetchColumn();
+}
+
+/**
+ * Récupère les articles récents d'aujourd'hui
+ * @param int $limit Nombre maximum d'articles à récupérer
+ * @return array
+ */
+function getRecentArticles(int $limit = 5): array
+{
+	$pdo = getPDO();
+	$sql = 'SELECT id_article, titre, date_creation
+	        FROM articles
+	        WHERE DATE(date_creation) = CURRENT_DATE
+	        ORDER BY date_creation DESC
+	        LIMIT :limit';
+
+	$stmt = $pdo->prepare($sql);
+	$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+	$stmt->execute();
+
+	return $stmt->fetchAll();
+}
