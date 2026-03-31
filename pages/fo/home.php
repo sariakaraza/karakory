@@ -58,7 +58,7 @@ if (count($articles) > 0) {
                         <?php echo htmlspecialchars($mainArticle['titre']); ?>
                     </h1>
                     <p class="featured-excerpt">
-                        <?php echo htmlspecialchars(substr($mainArticle['contenu'], 0, 300)); ?>...
+                        <?php echo htmlspecialchars(substr(strip_tags($mainArticle['contenu']), 0, 300)); ?>...
                     </p>
                     <div class="featured-meta">
                         <span>
@@ -106,7 +106,7 @@ if (count($articles) > 0) {
                                         <?php echo htmlspecialchars($article['titre']); ?>
                                     </h3>
                                     <p class="article-card-excerpt">
-                                        <?php echo htmlspecialchars(substr($article['contenu'], 0, 150)); ?>
+                                        <?php echo htmlspecialchars(substr(strip_tags($article['contenu']), 0, 150)); ?>
                                     </p>
                                     <p class="article-card-date">
                                         <?php 

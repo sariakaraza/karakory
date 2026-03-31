@@ -94,7 +94,7 @@ $articles = getArticles();
                                     <span class="article-category"><?php echo htmlspecialchars($article['categorie_nom'] ?? 'Sans catégorie'); ?></span>
                                 </div>
                                 <div class="article-content">
-                                    <p><?php echo nl2br(htmlspecialchars(substr($article['contenu'], 0, 200))); ?>...</p>
+                                    <p><?php echo (substr($article['contenu'], 0, 200)); ?>...</p>
                                 </div>
                                 <div class="article-footer">
                                     <div class="article-date">

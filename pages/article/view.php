@@ -92,7 +92,7 @@ $images = getArticleImages((int) $id_article);
                         <div class="detail-section">
                             <h3>Contenu</h3>
                             <div class="article-body">
-                                <?php echo nl2br(htmlspecialchars($article['contenu'])); ?>
+                                <?php echo $article['contenu']; ?>
                             </div>
                         </div>
 

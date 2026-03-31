@@ -25,7 +25,7 @@ $otherImages = $images;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?php echo htmlspecialchars(substr($article['contenu'], 0, 150)); ?>...">
+    <meta name="description" content="<?php echo htmlspecialchars(substr(strip_tags($article['contenu']), 0, 150)); ?>...">
     <title><?php echo htmlspecialchars($article['titre']); ?> - Karakory</title>
     <link rel="stylesheet" href="../../assets/css/fo-home.css">
     <link rel="stylesheet" href="../../assets/css/fo-article.css">
@@ -90,7 +90,7 @@ $otherImages = $images;
     <!-- Article Content -->
     <div class="article-container">
         <div class="article-content">
-            <?php echo nl2br(htmlspecialchars($article['contenu'])); ?>
+            <?php echo $article['contenu']; ?>
         </div>
 
         <!-- Article Images Gallery -->

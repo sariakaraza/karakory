@@ -77,7 +77,7 @@ require_once __DIR__ . '/traitement-search.php';
                                     <?php echo htmlspecialchars($article['titre']); ?>
                                 </h3>
                                 <p class="article-card-excerpt">
-                                    <?php echo htmlspecialchars(substr($article['contenu'], 0, 150)); ?>
+                                    <?php echo htmlspecialchars(substr(strip_tags($article['contenu']), 0, 150)); ?>
                                 </p>
                                 <p class="article-card-date">
                                     <?php 
