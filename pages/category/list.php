@@ -26,7 +26,7 @@ $categories = getCategories();
                         <p>Affichage des catégories par ordre descendant</p>
                     </div>
                     <div class="header-actions">
-                        <a href="form.php" class="btn-add">Ajouter une catégorie</a>
+                        <a href="/category/form" class="btn-add">Ajouter une catégorie</a>
                     </div>
                 </header>
 
@@ -64,8 +64,8 @@ $categories = getCategories();
                                         <?php echo date('d/m/Y H:i', strtotime($cat['date_creation'])); ?>
                                     </span>
                                     <div class="category-actions">
-                                        <a href="edit.php?id=<?php echo $cat['id_categorie']; ?>" class="btn-edit">Modifier</a>
-                                        <a href="delete.php?id=<?php echo $cat['id_categorie']; ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
+                                        <a href="/category/edit?id=<?php echo $cat['id_categorie']; ?>" class="btn-edit">Modifier</a>
+                                        <a href="/category/delete?id=<?php echo $cat['id_categorie']; ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
                                     </div>
                                 </div>
                             </article>
