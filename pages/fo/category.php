@@ -30,6 +30,7 @@ if (!empty($categorySlug)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez les articles de la catégorie <?php echo htmlspecialchars($category['nom']); ?> sur Karakory. Explorez des contenus passionnants et informatifs liés à <?php echo htmlspecialchars($category['nom']); ?>.">
     <title><?php echo htmlspecialchars($category['nom']); ?> - Karakory</title>
     <link rel="stylesheet" href="../../assets/css/fo-home.css">
     <link rel="stylesheet" href="../../assets/css/search.css">
