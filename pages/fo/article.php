@@ -155,17 +155,21 @@ if (!$article) {
         
         <div class="navbar-center">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    placeholder="Rechercher un article..."
-                    id="searchInput"
-                >
-                <button type="submit" title="Rechercher">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
+                <form method="GET" action="../search/results.php" style="display: flex; width: 100%; align-items: center;">
+                    <input 
+                        type="text" 
+                        name="q"
+                        placeholder="Rechercher un article..."
+                        id="searchInput"
+                        required
+                    >
+                    <button type="submit" title="Rechercher">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
 
@@ -221,17 +225,5 @@ if (!$article) {
             </a>
         </div>
     </div>
-
-    <script>
-        // Fonction de recherche
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const query = this.value;
-                if (query) {
-                    console.log('Recherche pour:', query);
-                }
-            }
-        });
-    </script>
 </body>
 </html>
