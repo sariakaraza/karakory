@@ -1,0 +1,11 @@
+{
+  "name": "karakory-blog",
+  "version": "1.0.0",
+  "description": "Karakory - Blog CMS with TinyMCE",
+  "scripts": {
+    "install-deps": "npm ci"
+  },
+  "dependencies": {
+    "tinymce": "^6.8.3"
+  }
+}

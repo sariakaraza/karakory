@@ -11,6 +11,7 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
     <title>Karakory - Modifier un article</title>
     <link rel="stylesheet" href="../../assets/css/dashboard.css">
     <link rel="stylesheet" href="../../assets/css/article-bo.css">
+    <script src="../../assets/lib/node_modules/tinymce/tinymce.min.js"></script>
 </head>
 <body>
     <?php
