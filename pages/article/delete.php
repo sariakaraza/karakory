@@ -5,28 +5,28 @@ require_once __DIR__ . '/../../inc/article/fonctions.php';
 // Récupération de l'ID de l'article
 $id_article = $_GET['id'] ?? null;
 if (!$id_article || !is_numeric($id_article)) {
-    header('Location: list.php?error=invalid_id');
+    header('Location: /article/list?error=invalid_id');
     exit;
 }
 
 // Vérifier que l'article existe
 $article = getArticle((int) $id_article);
 if (!$article) {
-    header('Location: list.php?error=article_not_found');
+    header('Location: /article/list?error=article_not_found');
     exit;
 }
 
 try {
     // Supprimer l'article
     if (deleteArticle((int) $id_article)) {
-        header('Location: list.php?success=article_deleted');
+        header('Location: /article/list?success=article_deleted');
         exit;
     } else {
-        header('Location: view.php?id=' . urlencode($id_article) . '&error=delete_failed');
+        header('Location: /article/view?id=' . urlencode($id_article) . '&error=delete_failed');
         exit;
     }
 } catch (Exception $e) {
     error_log('Erreur lors de la suppression de l\'article: ' . $e->getMessage());
-    header('Location: view.php?id=' . urlencode($id_article) . '&error=database_error');
+    header('Location: /article/view?id=' . urlencode($id_article) . '&error=database_error');
     exit;
 }

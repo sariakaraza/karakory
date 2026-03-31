@@ -26,7 +26,7 @@ $articles = getArticles();
                         <p>Affichage des articles par ordre descendant</p>
                     </div>
                     <div class="header-actions">
-                        <a href="form.php" class="btn-add">
+                        <a href="/article/form" class="btn-add">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -115,9 +115,9 @@ $articles = getArticles();
                                         </span>
                                     </div>
                                     <div class="article-actions">
-                                        <a href="view.php?id=<?php echo $article['id_article']; ?>" class="btn-view">Voir</a>
-                                        <a href="edit.php?id=<?php echo $article['id_article']; ?>" class="btn-edit">Modifier</a>
-                                        <a href="delete.php?id=<?php echo $article['id_article']; ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">Supprimer</a>
+                                        <a href="/article/view?id=<?php echo $article['id_article']; ?>" class="btn-view">Voir</a>
+                                        <a href="/article/edit?id=<?php echo $article['id_article']; ?>" class="btn-edit">Modifier</a>
+                                        <a href="/article/delete?id=<?php echo $article['id_article']; ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">Supprimer</a>
                                     </div>
                                 </div>
                             </article>
@@ -130,7 +130,7 @@ $articles = getArticles();
                             </svg>
                             <h3>Aucun article</h3>
                             <p>Commencez par créer votre premier article</p>
-                            <a href="form.php" class="btn-add">Créer un article</a>
+                            <a href="/article/form" class="btn-add">Créer un article</a>
                         </div>
                     <?php endif; ?>
                 </div>

@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validation basique
     if (empty($titre) || empty($slug) || empty($contenu) || empty($id_categorie)) {
         if (!empty($id_article)) {
-            header('Location: edit.php?id=' . urlencode($id_article) . '&error=missing_fields');
+            header('Location: /article/edit?id=' . urlencode($id_article) . '&error=missing_fields');
         } else {
-            header('Location: form.php?error=missing_fields');
+            header('Location: /article/form?error=missing_fields');
         }
         exit;
     }
@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Mise à jour
             $ok = updateArticle((int) $id_article, $data);
             if ($ok) {
-                header('Location: list.php?success=article_updated');
+                header('Location: /article/list?success=article_updated');
                 exit;
             } else {
-                header('Location: edit.php?id=' . urlencode($id_article) . '&error=update_failed');
+                header('Location: /article/edit?id=' . urlencode($id_article) . '&error=update_failed');
                 exit;
             }
         } else {
@@ -106,23 +106,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 
                 // Redirection avec message de succès, même s'il y a des erreurs d'images
-                $redirectUrl = 'list.php?success=article_created';
+                $redirectUrl = '/article/list?success=article_created';
                 if (!empty($imageErrors)) {
                     $redirectUrl .= '&image_errors=' . urlencode(implode('; ', $imageErrors));
                 }
                 header('Location: ' . $redirectUrl);
                 exit;
             } else {
-                header('Location: form.php?error=insert_failed');
+                header('Location: /article/form?error=insert_failed');
                 exit;
             }
         }
     } catch (Exception $e) {
         error_log('Erreur lors du traitement de l\'article: ' . $e->getMessage());
         if (!empty($id_article)) {
-            header('Location: edit.php?id=' . urlencode($id_article) . '&error=database_error');
+            header('Location: /article/edit?id=' . urlencode($id_article) . '&error=database_error');
         } else {
-            header('Location: form.php?error=database_error');
+            header('Location: /article/form?error=database_error');
         }
         exit;
     }

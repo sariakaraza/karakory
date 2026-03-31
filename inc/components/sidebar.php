@@ -1,37 +1,9 @@
 <?php
-// Détection du chemin actuel
-$currentPath = $_SERVER['PHP_SELF'];
-
-$isInDashboard = strpos($currentPath, '/dashboard/') !== false;
-$isInArticle   = strpos($currentPath, '/article/') !== false;
-$isInCategory  = strpos($currentPath, '/category/') !== false;
-
-// Gestion des liens selon la position
-if ($isInDashboard) {
-    $homeLink      = 'first.php';
-    $dashboardLink = 'list.php';
-    $articleLink   = '../article/list.php';
-    $categoryLink  = '../category/list.php';
-
-} elseif ($isInArticle) {
-    $homeLink      = '../dashboard/first.php';
-    $dashboardLink = '../dashboard/list.php';
-    $articleLink   = 'list.php';
-    $categoryLink  = '../category/list.php';
-
-} elseif ($isInCategory) {
-    $homeLink      = '../dashboard/first.php';
-    $dashboardLink = '../dashboard/list.php';
-    $articleLink   = '../article/list.php';
-    $categoryLink  = 'list.php';
-
-} else {
-    // fallback
-    $homeLink      = 'dashboard/first.php';
-    $dashboardLink = 'dashboard/list.php';
-    $articleLink   = 'article/list.php';
-    $categoryLink  = 'category/list.php';
-}
+// Liens absolus pour le rewriting URL
+$homeLink      = '/dashboard/first';
+$dashboardLink = '/dashboard/list';
+$articleLink   = '/article/list';
+$categoryLink  = '/category/list';
 ?>
 
 <aside class="sidebar">

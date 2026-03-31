@@ -38,7 +38,7 @@ if (!$article) {
                         <h1>Détails de l'article</h1>
                         <p><?php echo htmlspecialchars($article['titre']); ?></p>
                     </div>
-                    <a href="list.php" class="btn-bo-add">
+                    <a href="/article/list" class="btn-bo-add">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="19" y1="12" x2="5" y2="12"></line>
                             <polyline points="12 19 5 12 12 5"></polyline>
@@ -95,8 +95,8 @@ if (!$article) {
 
                         <!-- Actions -->
                         <div class="form-actions">
-                            <a href="list.php" class="btn-cancel">Retour</a>
-                            <a href="edit.php?id=<?php echo $article['id_article']; ?>" class="btn-submit">
+                            <a href="/article/list" class="btn-cancel">Retour</a>
+                            <a href="/article/edit?id=<?php echo $article['id_article']; ?>" class="btn-submit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>

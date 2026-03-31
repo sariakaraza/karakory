@@ -13,7 +13,7 @@ $username = isset($_POST['username']) ? trim($_POST['username']) : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 if ($username === '' || $password === '') {
-    header('Location: form.php?error=' . urlencode('Veuillez renseigner tous les champs'));
+    header('Location: /login/form?error=' . urlencode('Veuillez renseigner tous les champs'));
     exit;
 }
 
@@ -21,7 +21,7 @@ $user = checkLogin($username, $password);
 
 if ($user === false) {
     // Utilisateur non trouvé ou mot de passe incorrect
-    header('Location: form.php?error=' . urlencode("Vos identifiants sont incorrects"));
+    header('Location: /login/form?error=' . urlencode("Vos identifiants sont incorrects"));
     exit;
 }
 
@@ -32,10 +32,10 @@ if (isAdmin($id_user)) {
     // Stocker les informations utiles en session
     $_SESSION['user'] = $user;
 
-    header('Location: ../dashboard/first.php');
+    header('Location: /dashboard/first');
     exit;
 } else {
     // Utilisateur authentifié mais pas admin
-    header('Location: form.php?error=' . urlencode('Vous n\'êtes pas administrateur'));
+    header('Location: /login/form?error=' . urlencode('Vous n\'êtes pas administrateur'));
     exit;
 }
