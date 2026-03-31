@@ -24,7 +24,7 @@ if (count($articles) > 0) {
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="home.php" class="navbar-brand">Karakory</a>
+        <a href="/" class="navbar-brand">Karakory</a>
         
         <div class="navbar-center">
             <div class="search-box">
@@ -43,7 +43,7 @@ if (count($articles) > 0) {
         </div>
 
         <div class="navbar-right">
-            <a href="../../pages/login/form.php" class="btn-login">Se connecter</a>
+            <a href="/login/form" class="btn-login">Se connecter</a>
         </div>
     </nav>
 

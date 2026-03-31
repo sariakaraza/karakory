@@ -21,7 +21,7 @@ if (isset($_GET['error']) && is_string($_GET['error'])) {
         <div class="login-right">
             <div class="login-form-wrapper">
                 <h1>Connexion</h1>
-                <form method="POST" action="traitement-login.php" class="login-form">
+                <form method="POST" action="/login/traitement-login" class="login-form">
                     <div class="form-group">
                         <label for="username">Nom d'utilisateur</label>
                         <input type="text" id="username" name="username" required>
