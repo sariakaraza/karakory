@@ -24,11 +24,11 @@ if (isset($_GET['error']) && is_string($_GET['error'])) {
                 <form method="POST" action="/login/traitement-login" class="login-form">
                     <div class="form-group">
                         <label for="username">Nom d'utilisateur</label>
-                        <input type="text" id="username" name="username" required>
+                        <input type="text" id="username" name="username" value="rakoto" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" value="rakotoAdmin" required>
                     </div>
                     <button type="submit" class="btn-login">Se connecter</button>
                 </form>
