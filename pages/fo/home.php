@@ -24,11 +24,11 @@ if (count($articles) > 0) {
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="/" class="navbar-brand">Karakory</a>
+        <a href="/fo/home" class="navbar-brand">Karakory</a>
         
         <div class="navbar-center">
             <div class="search-box">
-                <form method="GET" action="../search/results.php" style="display: flex; width: 100%; align-items: center;">
+                <form method="GET" action="/search/results" style="display: flex; width: 100%; align-items: center;">
                     <input 
                         type="text" 
                         name="q"
@@ -82,7 +82,7 @@ if (count($articles) > 0) {
                             ?>
                         </span>
                     </div>
-                    <a href="article.php?slug=<?php echo urlencode($mainArticle['slug']); ?>" class="featured-link">Lire l'article</a>
+                    <a href="/fo/article?slug=<?php echo urlencode($mainArticle['slug']); ?>" class="featured-link">Lire l'article</a>
                 </div>
             </section>
 
@@ -91,7 +91,7 @@ if (count($articles) > 0) {
                 <h2 class="articles-title">Derniers articles</h2>
                 <div class="articles-grid">
                     <?php foreach ($otherArticles as $article): ?>
-                        <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>" style="text-decoration: none; color: inherit;">
+                        <a href="/fo/article?slug=<?php echo urlencode($article['slug']); ?>" style="text-decoration: none; color: inherit;">
                             <div class="article-card">
                                 <div class="article-card-image-wrapper">
                                     <img 
