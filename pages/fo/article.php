@@ -14,6 +14,11 @@ if (!$article) {
     header('Location: home.php?error=article_not_found');
     exit;
 }
+
+// Récupération des images
+$images = getArticleImages($article['id_article']);
+$mainImage = !empty($images) ? array_shift($images) : null;
+$otherImages = $images;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -62,11 +67,58 @@ if (!$article) {
         </div>
     </div>
 
+    <!-- Article Hero Image -->
+    <?php if ($mainImage): ?>
+        <div class="article-hero-image">
+            <img 
+                src="<?php 
+                    $imagePath = $mainImage['url'];
+                    if (strpos($imagePath, '/') !== 0) {
+                        $imagePath = '/' . $imagePath;
+                    }
+                    echo htmlspecialchars($imagePath);
+                ?>" 
+                alt="<?php echo htmlspecialchars($mainImage['alt'] ?? $article['titre']); ?>"
+                class="hero-image"
+            >
+            <?php if (!empty($mainImage['alt'])): ?>
+                <p class="image-caption"><?php echo htmlspecialchars($mainImage['alt']); ?></p>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+
     <!-- Article Content -->
     <div class="article-container">
         <div class="article-content">
             <?php echo nl2br(htmlspecialchars($article['contenu'])); ?>
         </div>
+
+        <!-- Article Images Gallery -->
+        <?php if (count($otherImages) > 0): ?>
+            <div class="article-gallery">
+                <h3 class="gallery-title">Galerie photos</h3>
+                <div class="gallery-grid">
+                    <?php foreach ($otherImages as $image): ?>
+                        <figure class="gallery-item">
+                            <img 
+                                src="<?php 
+                                    $imagePath = $image['url'];
+                                    if (strpos($imagePath, '/') !== 0) {
+                                        $imagePath = '/' . $imagePath;
+                                    }
+                                    echo htmlspecialchars($imagePath);
+                                ?>" 
+                                alt="<?php echo htmlspecialchars($image['alt'] ?? 'Image'); ?>"
+                                class="gallery-image"
+                            >
+                            <?php if (!empty($image['alt'])): ?>
+                                <figcaption><?php echo htmlspecialchars($image['alt']); ?></figcaption>
+                            <?php endif; ?>
+                        </figure>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <!-- Back Button -->
         <div style="text-align: center; margin-top: 3rem;">

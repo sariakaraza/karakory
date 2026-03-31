@@ -7,10 +7,14 @@ $articles = getArticles();
 // Séparer le premier article (le plus récent) des autres
 $mainArticle = null;
 $otherArticles = [];
+$mainArticleImage = null;
 
 if (count($articles) > 0) {
     $mainArticle = array_shift($articles);
     $otherArticles = $articles;
+    
+    // Récupérer la première image de l'article principal
+    $mainArticleImage = getArticleFirstImage($mainArticle['id_article']);
 }
 ?>
 <!DOCTYPE html>
@@ -31,8 +35,18 @@ if (count($articles) > 0) {
             <section class="featured-section">
                 <div class="featured-image-wrapper">
                     <img 
-                        src="https://via.placeholder.com/500x400?text=<?php echo urlencode($mainArticle['titre']); ?>" 
-                        alt="<?php echo htmlspecialchars($mainArticle['titre']); ?>" 
+                        src="<?php 
+                            if ($mainArticleImage) {
+                                $imagePath = $mainArticleImage['url'];
+                                if (strpos($imagePath, '/') !== 0) {
+                                    $imagePath = '/' . $imagePath;
+                                }
+                                echo htmlspecialchars($imagePath);
+                            } else {
+                                echo 'https://via.placeholder.com/500x400?text=' . urlencode($mainArticle['titre']);
+                            }
+                        ?>" 
+                        alt="<?php echo htmlspecialchars($mainArticleImage['alt'] ?? $mainArticle['titre'] ?? 'Image article'); ?>" 
                         class="featured-image"
                     >
                 </div>
@@ -64,12 +78,23 @@ if (count($articles) > 0) {
                 <h2 class="articles-title">Derniers articles</h2>
                 <div class="articles-grid">
                     <?php foreach ($otherArticles as $article): ?>
+                        <?php $articleImage = getArticleFirstImage($article['id_article']); ?>
                         <a href="/fo/article?slug=<?php echo urlencode($article['slug']); ?>" style="text-decoration: none; color: inherit;">
                             <div class="article-card">
                                 <div class="article-card-image-wrapper">
                                     <img 
-                                        src="https://via.placeholder.com/300x200?text=<?php echo urlencode($article['titre']); ?>" 
-                                        alt="<?php echo htmlspecialchars($article['titre']); ?>"
+                                        src="<?php 
+                                            if ($articleImage) {
+                                                $imagePath = $articleImage['url'];
+                                                if (strpos($imagePath, '/') !== 0) {
+                                                    $imagePath = '/' . $imagePath;
+                                                }
+                                                echo htmlspecialchars($imagePath);
+                                            } else {
+                                                echo 'https://via.placeholder.com/300x200?text=' . urlencode($article['titre']);
+                                            }
+                                        ?>" 
+                                        alt="<?php echo htmlspecialchars($articleImage['alt'] ?? $article['titre'] ?? 'Image article'); ?>"
                                         class="article-card-image"
                                     >
                                 </div>
@@ -92,7 +117,8 @@ if (count($articles) > 0) {
                                     </p>
                                 </div>
                             </div>
-                        </a>                        </a>                    <?php endforeach; ?>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             <?php endif; ?>
         <?php else: ?>
