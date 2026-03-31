@@ -34,6 +34,24 @@ function getArticleById(int $id)
 }
 
 /**
+ * Récupère tous les articles d'une catégorie donnée, triés par date_publication décroissante avec le nom de la catégorie.
+ * @param int $id_category
+ * @return array
+ */
+function getArticlesByCategory(int $id_category): array
+{
+	$pdo = getPDO();
+	$sql = 'SELECT a.*, c.nom as categorie_nom
+	        FROM articles a
+	        LEFT JOIN categories c ON a.id_categorie = c.id_categorie
+	        WHERE a.id_categorie = :id_categorie
+	        ORDER BY a.date_publication DESC';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([':id_categorie' => $id_category]);
+	return $stmt->fetchAll();
+}
+
+/**
  * Insère un nouvel article.
  * @param array $data Associative array: titre, slug, contenu, date_publication (nullable), id_user, id_categorie
  * @return int id inséré

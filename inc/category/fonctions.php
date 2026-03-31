@@ -134,3 +134,28 @@ function getCategoryById(int $id): ?array
 	$category = $stmt->fetch();
 	return $category ?: null;
 }
+
+/**
+ * Récupère une catégorie par son slug.
+ * @param string $slug
+ * @return array|null
+ */
+function getCategoryBySlug(string $slug): ?array
+{
+	$pdo = getPDO();
+	$sql = 'SELECT * FROM categories WHERE slug = :slug';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([':slug' => $slug]);
+	$category = $stmt->fetch();
+	return $category ?: null;
+}
+
+/**
+ * Affiche une catégorie par son slug (alias de getCategoryBySlug pour compatibilité).
+ * @param string $slug
+ * @return array|null
+ */
+function show(string $slug): ?array
+{
+	return getCategoryBySlug($slug);
+}
