@@ -16,6 +16,9 @@ if (!$article) {
     header('Location: /article/list?error=article_not_found');
     exit;
 }
+
+// Récupération des images
+$images = getArticleImages((int) $id_article);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -91,6 +94,64 @@ if (!$article) {
                             <div class="article-body">
                                 <?php echo nl2br(htmlspecialchars($article['contenu'])); ?>
                             </div>
+                        </div>
+
+                        <!-- Galerie d'images -->
+                        <div class="detail-section">
+                            <div class="images-section-header">
+                                <h3>Images de l'article</h3>
+                                <?php if (count($images) > 0): ?>
+                                    <span class="image-count"><?php echo count($images); ?> image<?php echo count($images) > 1 ? 's' : ''; ?></span>
+                                <?php endif; ?>
+                            </div>
+                            
+                            <?php if (count($images) > 0): ?>
+                                <div class="images-gallery">
+                                    <?php foreach ($images as $index => $image): ?>
+                                        <div class="image-card">
+                                            <div class="image-card-wrapper">
+                                                <img 
+                                                    src="<?php 
+                                                        $imagePath = $image['url'];
+                                                        if (strpos($imagePath, '/') !== 0) {
+                                                            $imagePath = '/' . $imagePath;
+                                                        }
+                                                        echo htmlspecialchars($imagePath);
+                                                    ?>" 
+                                                    alt="<?php echo htmlspecialchars($image['alt'] ?? 'Image'); ?>"
+                                                    class="image-card-img"
+                                                >
+                                                <div class="image-overlay">
+                                                    <a href="<?php 
+                                                        $imagePath = $image['url'];
+                                                        if (strpos($imagePath, '/') !== 0) {
+                                                            $imagePath = '/' . $imagePath;
+                                                        }
+                                                        echo htmlspecialchars($imagePath);
+                                                    ?>" target="_blank" class="btn-view-image" title="Afficher l'image">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                            <circle cx="12" cy="12" r="3"></circle>
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="image-card-info">
+                                                <p class="image-alt-text"><?php echo htmlspecialchars($image['alt'] ?? 'Sans description'); ?></p>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="no-images">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                        <polyline points="21 15 16 10 5 21"></polyline>
+                                    </svg>
+                                    <p>Aucune image associée à cet article</p>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <!-- Actions -->
@@ -177,6 +238,152 @@ if (!$article) {
             border-radius: 4px;
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+
+        /* Images Gallery Styles */
+        .images-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .images-section-header h3 {
+            margin: 0;
+        }
+
+        .image-count {
+            background: #e7f3ff;
+            color: #0066cc;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .images-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .image-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .image-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #007bff;
+        }
+
+        .image-card-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 66.67%;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .image-card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-card:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .btn-view-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-view-image:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+
+        .image-card-info {
+            padding: 1rem;
+        }
+
+        .image-alt-text {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .image-meta {
+            margin: 0.5rem 0 0 0;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .no-images {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #ddd;
+        }
+
+        .no-images svg {
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .no-images p {
+            margin: 0;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .images-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .images-section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
         }
     </style>
 </body>
