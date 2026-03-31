@@ -282,35 +282,35 @@ VALUES
 
 INSERT INTO images_articles (url, alt, id_article) VALUES
 -- Article 1 : Escalade militaire (3 images)
-('assets/images/articles/frappes-aeriennes-iran-1.jpg', 'Frappes aériennes sur une installation militaire iranienne', 1),
-('assets/images/articles/frappes-aeriennes-iran-2.jpg', 'Fumée s''élevant après une frappe sur Téhéran', 1),
-('assets/images/articles/carte-zones-touchees.jpg', 'Carte des zones touchées par les frappes en Iran', 1),
+('assets/images/articles/frappes-aeriennes-iran-1.jpeg', 'Frappes aériennes sur une installation militaire iranienne', 1),
+('assets/images/articles/frappes-aeriennes-iran-2.jpeg', 'Fumée s''élevant après une frappe sur Téhéran', 1),
+('assets/images/articles/carte-zones-touchees.png', 'Carte des zones touchées par les frappes en Iran', 1),
 
 -- Article 2 : Riposte missiles
-('assets/images/articles/missiles-balistiques-iran.jpg', 'Lancement de missiles balistiques iraniens', 2),
+('assets/images/articles/missiles-balistiques-iran.png', 'Lancement de missiles balistiques iraniens', 2),
 
 -- Article 3 : Téhéran sous tension
-('assets/images/articles/teheran-civils-abri.jpg', 'Civils iraniens dans un abri anti-aérien à Téhéran', 3),
-('assets/images/articles/aide-humanitaire-iran.jpg', 'Distribution d''aide humanitaire en Iran', 3),
+('assets/images/articles/teheran-civils-abri.png', 'Civils iraniens dans un abri anti-aérien à Téhéran', 3),
+('assets/images/articles/aide-humanitaire-iran.png', 'Distribution d''aide humanitaire en Iran', 3),
 
 -- Article 4 : Négociations Genève
 ('assets/images/articles/negociations-geneve.jpg', 'Salle de négociations au Palais des Nations à Genève', 4),
 
 -- Article 5 : Analyse stratégique
-('assets/images/articles/carte-moyen-orient.jpg', 'Carte stratégique du Moyen-Orient montrant les forces en présence', 5),
+('assets/images/articles/carte-moyen-orient.png', 'Carte stratégique du Moyen-Orient montrant les forces en présence', 5),
 
 -- Article 6 : Pétrole
 ('assets/images/articles/prix-petrole-graphique.jpg', 'Graphique de l''évolution des prix du pétrole en 2026', 6),
 ('assets/images/articles/raffinerie-petrole.jpg', 'Raffinerie de pétrole au coucher du soleil', 6),
 
 -- Article 7 : Europe divisée
-('assets/images/articles/sommet-europeen.jpg', 'Dirigeants européens lors d''un sommet extraordinaire à Bruxelles', 7),
+('assets/images/articles/sommet-europeen.png', 'Dirigeants européens lors d''un sommet extraordinaire à Bruxelles', 7),
 
 -- Article 8 : Récession mondiale
-('assets/images/articles/bourse-chute.jpg', 'Écrans de la bourse affichant des indices en baisse', 8),
+('assets/images/articles/bourse-chute.png', 'Écrans de la bourse affichant des indices en baisse', 8),
 
 -- Article 9 : Histoire
-('assets/images/articles/histoire-iran-1953.jpg', 'Photo historique de Mohammad Mossadegh en 1953', 9),
+('assets/images/articles/histoire-iran-1953.png', 'Photo historique de Mohammad Mossadegh en 1953', 9),
 
 -- Article 10 : Cessez-le-feu
-('assets/images/articles/cessez-le-feu-onu.jpg', 'Représentants de l''ONU annonçant le cessez-le-feu', 10);
+('assets/images/articles/cessez-le-feu-onu.png', 'Représentants de l''ONU annonçant le cessez-le-feu', 10);
