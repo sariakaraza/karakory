@@ -96,7 +96,7 @@ if (!$article) {
 
         <!-- Back Button -->
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="home.php" style="display: inline-block; background: #2c5aa0; color: white; padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
+            <a href="/fo/home" style="display: inline-block; background: #2c5aa0; color: white; padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
                 ← Retour à l'accueil
             </a>
         </div>

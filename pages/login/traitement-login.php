@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../inc/login/fonctions.php';
 
 // Vérifie que la requête est en POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: form.php');
+    header('Location: /login/form');
     exit;
 }
 
