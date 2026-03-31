@@ -159,3 +159,4 @@ function showCategory(string $slug): ?array
 {
 	return getCategoryBySlug($slug);
 }
+
