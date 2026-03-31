@@ -16,7 +16,7 @@
                 <p class="subtitle">Système de gestion de contenu</p>
 
                 <div class="welcome-cards">
-                    <a href="../article/form.php" class="welcome-card">
+                    <a href="/article/form" class="welcome-card">
                         <!-- <div class="welcome-card"> -->
                         <div class="card-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -28,7 +28,7 @@
                         <p>Créez, modifiez et publiez vos articles en toute simplicité</p>
                     <!-- </div> -->
 
-                    <a href="../category/form.php" class="welcome-card">
+                    <a href="/category/form" class="welcome-card">
                         <!-- <div class="welcome-card"> -->
                             <div class="card-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -197,7 +197,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <form action="" method="POST">
+                    <form action="/category/traitement-category" method="POST">
                         <div class="form-group">
                             <label for="nom">Nom de la catégorie</label>
                             <input
@@ -223,7 +223,7 @@
                         </div>
 
                         <div class="form-actions">
-                            <a href="../dashboard/first.php" class="btn btn-secondary">
+                            <a href="/dashboard/first" class="btn btn-secondary">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                                 </svg>

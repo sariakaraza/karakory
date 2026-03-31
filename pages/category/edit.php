@@ -15,23 +15,6 @@ if (!$isEdit) {
     header('Location: list.php');
     exit;
 }
-
-// Traitement du formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom = trim($_POST['nom'] ?? '');
-    $slug = trim($_POST['slug'] ?? '');
-
-    if (!empty($nom) && !empty($slug)) {
-        if (updateCategory($category['id_categorie'], ['nom' => $nom, 'slug' => $slug])) {
-            header('Location: list.php?success=category_updated');
-            exit;
-        } else {
-            $error = 'Erreur lors de la mise à jour';
-        }
-    } else {
-        $error = 'Tous les champs sont requis';
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -53,13 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>Modifiez les informations de la catégorie</p>
                 </div>
 
-                <?php if (isset($error)): ?>
+                <?php if (isset($_GET['error'])): ?>
                     <div class="alert alert-error">
-                        <?php echo htmlspecialchars($error); ?>
+                        <?php echo htmlspecialchars($_GET['error']); ?>
                     </div>
                 <?php endif; ?>
 
-                <form method="POST" class="form-card">
+                <form action="/category/traitement-category" method="POST" class="form-card">
+                    <input type="hidden" name="id" value="<?php echo $category['id_categorie']; ?>">
                     <div class="form-group">
                         <label for="nom">Nom de la catégorie *</label>
                         <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($category['nom']); ?>" required>
@@ -81,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </svg>
                             Mettre à jour
                         </button>
-                        <a href="list.php" class="btn btn-secondary">
+                        <a href="/category/list" class="btn btn-secondary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="19" y1="12" x2="5" y2="12"></line>
                                 <polyline points="12 19 5 12 12 5"></polyline>
