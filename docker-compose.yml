@@ -8,6 +8,7 @@ services:
     container_name: karakory_app
     volumes:
       - ./:/var/www/html
+      - node_modules:/var/www/html/assets/lib/node_modules
     ports:
       - "8080:80"
     environment:
@@ -38,6 +39,7 @@ services:
 
 volumes:
   db-data:
+  node_modules:
 
 networks:
   app-network:
