@@ -88,10 +88,17 @@ if (!empty($categorySlug)) {
                     <a href="/fo/article?slug=<?php echo urlencode($article['slug']); ?>" style="text-decoration: none; color: inherit;">
                         <div class="article-card">
                             <div class="article-card-image-wrapper">
-                                <img 
-                                    src="https://via.placeholder.com/300x200?text=<?php echo urlencode($article['titre']); ?>" 
-                                    alt="<?php echo htmlspecialchars($article['titre']); ?>"
+                                <?php
+                                $imageUrl = !empty($article['image_url'])
+                                    ? '/' . $article['image_url']
+                                    : 'https://via.placeholder.com/300x200?text=' . urlencode($article['titre']);
+                                $imageAlt = $article['image_alt'] ?? htmlspecialchars($article['titre']);
+                                ?>
+                                <img
+                                    src="<?php echo htmlspecialchars($imageUrl); ?>"
+                                    alt="<?php echo htmlspecialchars($imageAlt); ?>"
                                     class="article-card-image"
+                                    onerror="this.src='https://via.placeholder.com/300x200?text=Image+non+disponible'"
                                 >
                             </div>
                             <div class="article-card-body">
