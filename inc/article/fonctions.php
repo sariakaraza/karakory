@@ -210,6 +210,31 @@ function show(string $slug)
 {
 	return getArticleBySlug($slug);
 }
+
+/**
+ * Recherche des articles par mot-clé
+ * Cherche dans le titre, le contenu et la catégorie
+ * @param string $keyword
+ * @return array
+ */
+function searchArticles(string $keyword): array
+{
+	$pdo = getPDO();
+	$keyword = '%' . $keyword . '%';
+	
+	$sql = 'SELECT a.*, c.nom as categorie_nom
+	        FROM articles a
+	        LEFT JOIN categories c ON a.id_categorie = c.id_categorie
+	        WHERE a.titre ILIKE :keyword 
+	           OR a.contenu ILIKE :keyword 
+	           OR c.nom ILIKE :keyword
+	        ORDER BY a.date_publication DESC';
+	
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([':keyword' => $keyword]);
+	
+	return $stmt->fetchAll();
+}
 /*
  * Sauvegarde une image pour un article
  * @param array $data Associative array: url, alt, id_article

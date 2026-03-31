@@ -129,17 +129,5 @@ if (count($articles) > 0) {
             </div>
         <?php endif; ?>
     </div>
-
-    <script>
-        // Fonction de recherche
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const query = this.value;
-                if (query) {
-                    console.log('Recherche pour:', query);
-                }
-            }
-        });
-    </script>
 </body>
 </html>
