@@ -2,15 +2,22 @@
 require_once __DIR__ . '/../connexion.php';
 
 /**
- * Récupère tous les articles triés par date_publication décroissante avec le nom de la catégorie.
+ * Récupère tous les articles triés par date_publication décroissante avec le nom de la catégorie et leur première image.
  * @return array
  */
 function getArticles(): array
 {
 	$pdo = getPDO();
-	$sql = 'SELECT a.*, c.nom as categorie_nom
+	$sql = 'SELECT a.*, c.nom as categorie_nom, i.url as image_url, i.alt as image_alt
 	        FROM articles a
 	        LEFT JOIN categories c ON a.id_categorie = c.id_categorie
+	        LEFT JOIN LATERAL (
+	            SELECT url, alt
+	            FROM images_articles
+	            WHERE id_article = a.id_article
+	            ORDER BY date_creation ASC
+	            LIMIT 1
+	        ) i ON true
 	        ORDER BY a.date_publication DESC';
 	$stmt = $pdo->query($sql);
 	return $stmt->fetchAll();
@@ -34,16 +41,23 @@ function getArticleById(int $id)
 }
 
 /**
- * Récupère tous les articles d'une catégorie donnée, triés par date_publication décroissante avec le nom de la catégorie.
+ * Récupère tous les articles d'une catégorie donnée, triés par date_publication décroissante avec le nom de la catégorie et leur première image.
  * @param int $id_category
  * @return array
  */
 function getArticlesByCategory(int $id_category): array
 {
 	$pdo = getPDO();
-	$sql = 'SELECT a.*, c.nom as categorie_nom
+	$sql = 'SELECT a.*, c.nom as categorie_nom, i.url as image_url, i.alt as image_alt
 	        FROM articles a
 	        LEFT JOIN categories c ON a.id_categorie = c.id_categorie
+	        LEFT JOIN LATERAL (
+	            SELECT url, alt
+	            FROM images_articles
+	            WHERE id_article = a.id_article
+	            ORDER BY date_creation ASC
+	            LIMIT 1
+	        ) i ON true
 	        WHERE a.id_categorie = :id_categorie
 	        ORDER BY a.date_publication DESC';
 	$stmt = $pdo->prepare($sql);
@@ -212,7 +226,7 @@ function show(string $slug)
 }
 
 /**
- * Recherche des articles par mot-clé
+ * Recherche des articles par mot-clé avec leur première image
  * Cherche dans le titre, le contenu et la catégorie
  * @param string $keyword
  * @return array
@@ -221,18 +235,25 @@ function searchArticles(string $keyword): array
 {
 	$pdo = getPDO();
 	$keyword = '%' . $keyword . '%';
-	
-	$sql = 'SELECT a.*, c.nom as categorie_nom
+
+	$sql = 'SELECT a.*, c.nom as categorie_nom, i.url as image_url, i.alt as image_alt
 	        FROM articles a
 	        LEFT JOIN categories c ON a.id_categorie = c.id_categorie
-	        WHERE a.titre ILIKE :keyword 
-	           OR a.contenu ILIKE :keyword 
+	        LEFT JOIN LATERAL (
+	            SELECT url, alt
+	            FROM images_articles
+	            WHERE id_article = a.id_article
+	            ORDER BY date_creation ASC
+	            LIMIT 1
+	        ) i ON true
+	        WHERE a.titre ILIKE :keyword
+	           OR a.contenu ILIKE :keyword
 	           OR c.nom ILIKE :keyword
 	        ORDER BY a.date_publication DESC';
-	
+
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute([':keyword' => $keyword]);
-	
+
 	return $stmt->fetchAll();
 }
 /**
