@@ -27,7 +27,7 @@ if (!$article) {
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="home.php" class="navbar-brand">Karakory</a>
+        <a href="/fo/home" class="navbar-brand">Karakory</a>
         
         <div class="navbar-center">
             <div class="search-box">
@@ -50,14 +50,14 @@ if (!$article) {
         </div>
 
         <div class="navbar-right">
-            <a href="../../pages/login/form.php" class="btn-login">Se connecter</a>
+            <a href="/login/form" class="btn-login">Se connecter</a>
         </div>
     </nav>
 
     <!-- Article Header -->
     <div class="article-header">
         <div class="article-container">
-            <a href="home.php" class="back-link">
+            <a href="/fo/home" class="back-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>

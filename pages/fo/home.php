@@ -24,7 +24,7 @@ if (count($articles) > 0) {
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="/" class="navbar-brand">Karakory</a>
+        <a href="/fo/home" class="navbar-brand">Karakory</a>
         
         <div class="navbar-center">
             <div class="search-box">

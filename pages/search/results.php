@@ -13,7 +13,7 @@ require_once __DIR__ . '/traitement-search.php';
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="../fo/home.php" class="navbar-brand">Karakory</a>
+        <a href="/fo/home" class="navbar-brand">Karakory</a>
         
         <div class="navbar-center">
             <div class="search-box">
@@ -95,8 +95,8 @@ require_once __DIR__ . '/traitement-search.php';
             <div class="no-results">
                 <h2>Aucun résultat trouvé</h2>
                 <p>Désolé, aucun article ne correspond à votre recherche pour "<strong><?php echo htmlspecialchars($keyword); ?></strong>".</p>
-                <p>Essayez avec d'autres mots-clés ou <a href="../fo/home.php">retournez à l'accueil</a>.</p>
-                <a href="../fo/home.php" class="back-home-btn">Retour à l'accueil</a>
+                <p>Essayez avec d'autres mots-clés ou <a href="/fo/home">retournez à l'accueil</a>.</p>
+                <a href="/fo/home" class="back-home-btn">Retour à l'accueil</a>
             </div>
         <?php endif; ?>
     </div>
