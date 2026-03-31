@@ -29,7 +29,7 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
                         <h1>Ajouter un article</h1>
                         <p>Créez un nouvel article pour votre blog</p>
                     </div>
-                    <a href="list.php" class="btn-bo-add">
+                    <a href="/article/list" class="btn-bo-add">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="19" y1="12" x2="5" y2="12"></line>
                             <polyline points="12 19 5 12 12 5"></polyline>
@@ -61,7 +61,7 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
 
                 <!-- Formulaire -->
                 <div class="form-container">
-                    <form method="POST" action="traitement-article.php" enctype="multipart/form-data" class="article-form">
+                    <form method="POST" action="/article/traitement-article" enctype="multipart/form-data" class="article-form">
 
                         <!-- Titre -->
                         <div class="form-group">
@@ -134,7 +134,7 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
 
                         <!-- Boutons -->
                         <div class="form-actions">
-                            <a href="list.php" class="btn-cancel">Annuler</a>
+                            <a href="/article/list" class="btn-cancel">Annuler</a>
                             <button type="submit" class="btn-submit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polyline points="9 11 12 14 22 4"></polyline>
