@@ -22,162 +22,42 @@ if (!$article) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($article['titre']); ?> - Karakory</title>
     <link rel="stylesheet" href="../../assets/css/fo-home.css">
-    <style>
-        /* Article Page Styles */
-        .article-header {
-            background: linear-gradient(135deg, #0a1f3e 0%, #1a3055 100%);
-            color: white;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .article-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .article-header h1 {
-            font-size: 2.5rem;
-            font-family: 'Georgia', serif;
-            font-weight: 900;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-        }
-
-        .article-header-meta {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            font-size: 0.95rem;
-        }
-
-        .article-header-date {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .article-category-badge {
-            display: inline-block;
-            background: #2c5aa0;
-            padding: 0.4rem 1rem;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .article-content {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            line-height: 1.8;
-            font-size: 1.05rem;
-            color: #495057;
-        }
-
-        .article-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .article-content h2 {
-            font-family: 'Georgia', serif;
-            color: #0a1f3e;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .article-content h3 {
-            font-family: 'Georgia', serif;
-            color: #1a3055;
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-        }
-
-        .article-content strong {
-            color: #0a1f3e;
-        }
-
-        .article-nofocus {
-            margin-top: 0;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: opacity 0.2s;
-        }
-
-        .back-link:hover {
-            opacity: 0.8;
-        }
-
-        .back-link svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .article-header {
-                padding: 2rem 1rem;
-            }
-
-            .article-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .article-content {
-                padding: 1.5rem;
-            }
-
-            .article-header-meta {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/fo-article.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="home.php" class="navbar-brand">Karakory</a>
+        <a href="/fo/home" class="navbar-brand">Karakory</a>
         
         <div class="navbar-center">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    placeholder="Rechercher un article..."
-                    id="searchInput"
-                >
-                <button type="submit" title="Rechercher">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
+                <form method="GET" action="/search/results" style="display: flex; width: 100%; align-items: center;">
+                    <input 
+                        type="text" 
+                        name="q"
+                        placeholder="Rechercher un article..."
+                        id="searchInput"
+                        required
+                    >
+                    <button type="submit" title="Rechercher">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
 
         <div class="navbar-right">
-            <a href="../../pages/login/form.php" class="btn-login">Se connecter</a>
+            <a href="/login/form" class="btn-login">Se connecter</a>
         </div>
     </nav>
 
     <!-- Article Header -->
     <div class="article-header">
         <div class="article-container">
-            <a href="home.php" class="back-link">
+            <a href="/fo/home" class="back-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
@@ -216,7 +96,7 @@ if (!$article) {
 
         <!-- Back Button -->
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="home.php" style="display: inline-block; background: #2c5aa0; color: white; padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
+            <a href="/fo/home" style="display: inline-block; background: #2c5aa0; color: white; padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
                 ← Retour à l'accueil
             </a>
         </div>

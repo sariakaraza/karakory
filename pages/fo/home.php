@@ -24,21 +24,25 @@ if (count($articles) > 0) {
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="/" class="navbar-brand">Karakory</a>
+        <a href="/fo/home" class="navbar-brand">Karakory</a>
         
         <div class="navbar-center">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    placeholder="Rechercher un article..."
-                    id="searchInput"
-                >
-                <button type="submit" title="Rechercher">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
+                <form method="GET" action="/search/results" style="display: flex; width: 100%; align-items: center;">
+                    <input 
+                        type="text" 
+                        name="q"
+                        placeholder="Rechercher un article..."
+                        id="searchInput"
+                        required
+                    >
+                    <button type="submit" title="Rechercher">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
 
@@ -78,7 +82,7 @@ if (count($articles) > 0) {
                             ?>
                         </span>
                     </div>
-                    <a href="article.php?slug=<?php echo urlencode($mainArticle['slug']); ?>" class="featured-link">Lire l'article</a>
+                    <a href="/fo/article?slug=<?php echo urlencode($mainArticle['slug']); ?>" class="featured-link">Lire l'article</a>
                 </div>
             </section>
 
@@ -87,7 +91,7 @@ if (count($articles) > 0) {
                 <h2 class="articles-title">Derniers articles</h2>
                 <div class="articles-grid">
                     <?php foreach ($otherArticles as $article): ?>
-                        <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>" style="text-decoration: none; color: inherit;">
+                        <a href="/fo/article?slug=<?php echo urlencode($article['slug']); ?>" style="text-decoration: none; color: inherit;">
                             <div class="article-card">
                                 <div class="article-card-image-wrapper">
                                     <img 

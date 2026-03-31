@@ -4,6 +4,7 @@ $homeLink      = '/dashboard/first';
 $dashboardLink = '/dashboard/list';
 $articleLink   = '/article/list';
 $categoryLink  = '/category/list';
+$homeFoLink = '/fo/home';
 ?>
 
 <aside class="sidebar">
@@ -52,6 +53,17 @@ $categoryLink  = '/category/list';
                 <rect x="3" y="14" width="7" height="7"></rect>
             </svg>
             <span>Catégories</span>
+        </a>
+
+        <!-- Frontoffice -->
+        <a href="<?php echo $homeFoLink; ?>" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20"></path>
+                <path d="M12 2a15 15 0 0 1 0 20"></path>
+                <path d="M12 2a15 15 0 0 0 0 20"></path>
+            </svg>
+            <span>Aller au Frontoffice</span>
         </a>
 
     </nav>

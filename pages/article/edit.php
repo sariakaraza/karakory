@@ -18,14 +18,14 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
     // Récupération de l'ID de l'article
     $id_article = $_GET['id'] ?? null;
     if (!$id_article || !is_numeric($id_article)) {
-        header('Location: list.php?error=invalid_id');
+        header('Location: /article/list?error=invalid_id');
         exit;
     }
 
     // Récupération de l'article
     $article = getArticle((int) $id_article);
     if (!$article) {
-        header('Location: list.php?error=article_not_found');
+        header('Location: /article/list?error=article_not_found');
         exit;
     }
 
