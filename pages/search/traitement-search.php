@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$results = search($keyword);
 	} elseif (empty($keyword)) {
 		// Redirection si le champ est vide
-		header('Location: ../fo/home.php');
+		header('Location: /fo/home');
 		exit;
 	}
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$results = search($keyword);
 	} elseif (empty($keyword)) {
 		// Redirection si le paramètre est vide
-		header('Location: ../fo/home.php');
+		header('Location: /fo/home');
 		exit;
 	}
 }

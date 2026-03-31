@@ -22,131 +22,7 @@ if (!$article) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($article['titre']); ?> - Karakory</title>
     <link rel="stylesheet" href="../../assets/css/fo-home.css">
-    <style>
-        /* Article Page Styles */
-        .article-header {
-            background: linear-gradient(135deg, #0a1f3e 0%, #1a3055 100%);
-            color: white;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .article-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .article-header h1 {
-            font-size: 2.5rem;
-            font-family: 'Georgia', serif;
-            font-weight: 900;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-        }
-
-        .article-header-meta {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            font-size: 0.95rem;
-        }
-
-        .article-header-date {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .article-category-badge {
-            display: inline-block;
-            background: #2c5aa0;
-            padding: 0.4rem 1rem;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .article-content {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            line-height: 1.8;
-            font-size: 1.05rem;
-            color: #495057;
-        }
-
-        .article-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .article-content h2 {
-            font-family: 'Georgia', serif;
-            color: #0a1f3e;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .article-content h3 {
-            font-family: 'Georgia', serif;
-            color: #1a3055;
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-        }
-
-        .article-content strong {
-            color: #0a1f3e;
-        }
-
-        .article-nofocus {
-            margin-top: 0;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: opacity 0.2s;
-        }
-
-        .back-link:hover {
-            opacity: 0.8;
-        }
-
-        .back-link svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .article-header {
-                padding: 2rem 1rem;
-            }
-
-            .article-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .article-content {
-                padding: 1.5rem;
-            }
-
-            .article-header-meta {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/fo-article.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -155,7 +31,7 @@ if (!$article) {
         
         <div class="navbar-center">
             <div class="search-box">
-                <form method="GET" action="../search/results.php" style="display: flex; width: 100%; align-items: center;">
+                <form method="GET" action="/search/results" style="display: flex; width: 100%; align-items: center;">
                     <input 
                         type="text" 
                         name="q"
