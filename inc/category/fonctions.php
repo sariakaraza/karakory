@@ -155,7 +155,7 @@ function getCategoryBySlug(string $slug): ?array
  * @param string $slug
  * @return array|null
  */
-function show(string $slug): ?array
+function showCategory(string $slug): ?array
 {
 	return getCategoryBySlug($slug);
 }
