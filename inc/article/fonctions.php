@@ -235,7 +235,7 @@ function searchArticles(string $keyword): array
 	
 	return $stmt->fetchAll();
 }
-/*
+/**
  * Sauvegarde une image pour un article
  * @param array $data Associative array: url, alt, id_article
  * @return int id inséré
@@ -255,4 +255,32 @@ function saveArticleImage(array $data): int
 	$stmt->execute($params);
 	$id = $stmt->fetchColumn();
 	return (int) $id;
+}
+
+/**
+ * Récupère toutes les images d'un article
+ * @param int $id_article
+ * @return array
+ */
+function getArticleImages(int $id_article): array
+{
+	$pdo = getPDO();
+	$sql = 'SELECT id_image, url, alt, date_creation FROM images_articles WHERE id_article = :id_article ORDER BY date_creation ASC';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([':id_article' => $id_article]);
+	return $stmt->fetchAll();
+}
+
+/**
+ * Récupère la première image d'un article (image de couverture)
+ * @param int $id_article
+ * @return array|false
+ */
+function getArticleFirstImage(int $id_article)
+{
+	$pdo = getPDO();
+	$sql = 'SELECT id_image, url, alt FROM images_articles WHERE id_article = :id_article ORDER BY date_creation ASC LIMIT 1';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([':id_article' => $id_article]);
+	return $stmt->fetch();
 }

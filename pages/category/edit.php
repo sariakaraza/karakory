@@ -5,9 +5,9 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
 $category = null;
 $isEdit = false;
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = (int) $_GET['id'];
-    $category = getCategoryById($id);
+if (isset($_GET['slug'])) {
+    $slug = $_GET['slug'];
+    $category = getCategoryBySlug($slug);
     $isEdit = $category !== null;
 }
 

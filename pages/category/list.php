@@ -64,8 +64,8 @@ $categories = getCategories();
                                         <?php echo date('d/m/Y H:i', strtotime($cat['date_creation'])); ?>
                                     </span>
                                     <div class="category-actions">
-                                        <a href="/category/edit?id=<?php echo $cat['id_categorie']; ?>" class="btn-edit">Modifier</a>
-                                        <a href="/category/delete?id=<?php echo $cat['id_categorie']; ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
+                                        <a href="/category/edit?slug=<?php echo $cat['slug']; ?>" class="btn-edit">Modifier</a>
+                                        <a href="/category/delete?slug=<?php echo $cat['slug']; ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
                                     </div>
                                 </div>
                             </article>
@@ -74,7 +74,7 @@ $categories = getCategories();
                         <div class="empty-state">
                             <h3>Aucune catégorie</h3>
                             <p>Créez votre première catégorie.</p>
-                            <a href="form.php" class="btn-add">Créer une catégorie</a>
+                            <a href="/category/form" class="btn-add">Créer une catégorie</a>
                         </div>
                     <?php endif; ?>
                 </div>
