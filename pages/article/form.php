@@ -113,7 +113,6 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
                                 class="form-textarea"
                                 rows="15"
                                 placeholder="Rédigez le contenu de votre article..."
-                                required
                             ></textarea>
                         </div>
 
@@ -151,6 +150,21 @@ require_once __DIR__ . '/../../inc/category/fonctions.php';
     </div>
 
     <script>
+        // Initialisation de TinyMCE
+        tinymce.init({
+            selector: '#contenu',
+            height: 400,
+            menubar: true,
+            plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 14px; }',
+            license_key: 'gpl'
+        });
+
         // Auto-génération du slug depuis le titre
         document.getElementById('titre').addEventListener('input', function() {
             const titre = this.value;
