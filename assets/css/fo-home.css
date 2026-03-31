@@ -42,7 +42,6 @@ body {
 
 .navbar {
     background: var(--navy);
-    border-bottom: 2px solid var(--blue-accent);
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -51,6 +50,8 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow-md);
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .navbar-brand {
@@ -139,6 +140,10 @@ body {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
+
+/* ===================================
+   CATÉGORIES BAR
+   =================================== */
 
 /* ===================================
    MAIN CONTAINER
