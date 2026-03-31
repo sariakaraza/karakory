@@ -124,7 +124,7 @@ $categories = getCategories();
     <div class="categories-bar">
         <div class="categories-scroll">
             <?php foreach ($categories as $category): ?>
-                <a href="/search/results?category=<?php echo htmlspecialchars($category['slug']); ?>" class="category-tag">
+                <a href="/fo/category?slug=<?php echo htmlspecialchars($category['slug']); ?>" class="category-tag">
                     <?php echo htmlspecialchars($category['nom']); ?>
                 </a>
             <?php endforeach; ?>
